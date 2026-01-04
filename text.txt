@@ -1,0 +1,73 @@
+i2c vs esp32
+
+GND GND Mass
+VCC VIN (hoặc 5V) LCD cần 5V để hiển thị rõ nhất. Nếu nối 3.3V chữ sẽ rất mờ.
+SDA D21 (GPIO 21) Chân dữ liệu
+SCL D22 (GPIO 22) Chân đồng hồ
+
+
+cam bien van tay voi esp32
+GND Đất (Mass) GND 
+Vi / VCC / V+ Nguồn dương 3V3 (Cảm biến này thường chạy tốt ở 3.3V)
+TX Truyền dữ liệu GPIO 16 (RX2) Dây TX cảm biến phải vào RX của ESP32
+RX Nhận dữ liệu GPIO 17 (TX2) Dây RX cảm biến phải vào TX của ESP32
+Touch / TCH / WAK Cảm ứng (Tuỳ chọn) (Bỏ qua) Không bắt buộc để hoạt động
+3.3V / Vt (Tuỳ chọn) (Bỏ qua) Không cần nối
+
+
+key pad vs esp32
+R1 (Hàng 1) D13 Bên trái, chân thứ 3 từ trên xuống
+R2 (Hàng 2) D12 Bên trái, chân thứ 4
+R3 (Hàng 3) D14 Bên trái, chân thứ 5
+R4 (Hàng 4) D27 Bên trái, chân thứ 6
+C1 (Cột 1) D26 Bên trái, chân thứ 7
+C2 (Cột 2) D25 Bên trái, chân thứ 8
+C3 (Cột 3) D33 Bên trái, chân thứ 9
+C4 (Cột 4) D32 Bên trái, chân thứ 10
+
+relay vs esp32 
+DC+ VIN  Quan trọng: Relay này cần nguồn 5V để cuộn hút hoạt động tốt. Đừng nối vào 3V3 vì có thể không đủ điện để nhảy relay.
+DC- GND Nối đất chung với hệ thống.
+IN D4
+
+
+1. Module Cảm biến Ánh sáng (LDR) - Hình 1
+
+Module này có 2 chế độ: Digital (sáng/tối theo ngưỡng) và Analog (đo cường độ sáng). Với IoT, ta thường dùng Analog để vẽ biểu đồ.
+
+    VCC: Nối vào 3.3V 
+
+    GND: Nối vào GND.
+
+    AO (Analog Output): Nối vào chân GPIO 34 
+
+    DO (Digital Output): d35
+
+. Module Cảm biến Âm thanh - Hình 2
+
+Module này thường dùng để phát hiện tiếng động lớn (tiếng vỗ tay, tiếng gõ). Chân OUT thường trả về tín hiệu Digital (High/Low).
+
+    VCC: Nối vào 3.3V (hoặc 5V).
+
+    GND: Nối vào GND.
+
+    OUT: Nối vào một chân Digital GPIO d5 
+
+3. Module DHT11 (Nhiệt độ & Độ ẩm) - Hình 3
+
+Module này gửi dữ liệu qua 1 chân digital.
+
+    Chân +: Nối vào 3.3V.
+
+    Chân -: Nối vào GND.
+
+    Chân out: d15
+
+    
+. Cách nối Đèn LED 
+
+Đèn LED không nên nối trực tiếp 2 chân vào nguồn, nó cần một điện trở (thường là 220Ω hoặc 330Ω) để không bị cháy.
+
+    Chân Dương (+) của LED (chân dài hơn): Nối tiếp qua điện trở, sau đó nối vào một chân GPIO của ESP32 (ví dụ GPIO 4).
+
+    Chân Âm (-) của LED (chân ngắn hơn): Nối vào chân GND của ESP32.
