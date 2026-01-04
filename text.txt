@@ -68,6 +68,6 @@ Module này gửi dữ liệu qua 1 chân digital.
 
 Đèn LED không nên nối trực tiếp 2 chân vào nguồn, nó cần một điện trở (thường là 220Ω hoặc 330Ω) để không bị cháy.
 
-    Chân Dương (+) của LED (chân dài hơn): Nối tiếp qua điện trở, sau đó nối vào một chân GPIO của ESP32 (ví dụ GPIO 4).
+    Chân Dương (+) của LED (chân dài hơn): Nối tiếp qua điện trở, sau đó nối vào một chân GPIO của ESP32 (ví dụ GPIO 18).
 
     Chân Âm (-) của LED (chân ngắn hơn): Nối vào chân GND của ESP32.
